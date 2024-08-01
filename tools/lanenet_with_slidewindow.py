@@ -340,7 +340,7 @@ def test_lanenet(video_path, weights_path, with_lane_fit=True):
 
             # Apply sliding window
             slidewindow = SlideWindow()
-            lane_line_markings, other_result, another_result = slidewindow.slidewindow(binary_image_warped, roi_flag=0)
+            lane_line_markings, x_location, another_result = slidewindow.slidewindow(binary_image_warped, roi_flag=0)
             # Show results
             cv2.imshow('Mask Image', cv2.cvtColor(mask_image, cv2.COLOR_RGB2BGR))
             cv2.imshow('Source Image', cv2.cvtColor(image_vis, cv2.COLOR_RGB2BGR))
@@ -348,7 +348,7 @@ def test_lanenet(video_path, weights_path, with_lane_fit=True):
             cv2.imshow('Binary Image', (binary_seg_image[0] * 255).astype(np.uint8))
             cv2.imshow('Warped Binary Image', binary_image_warped)
             cv2.imshow('Lane Line Markings', cv2.cvtColor(lane_line_markings, cv2.COLOR_RGB2BGR))
-
+            print("차선 중심 x좌표 : ", x_location)
             # Exit if 'q' is pressed
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break

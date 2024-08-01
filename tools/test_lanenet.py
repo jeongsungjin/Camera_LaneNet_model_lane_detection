@@ -25,6 +25,7 @@ from local_utils.log_util import init_logger
 CFG = parse_config_utils.lanenet_cfg
 LOG = init_logger.get_logger(log_file_name_prefix='lanenet_test')
 
+tf.compat.v1.disable_eager_execution()
 
 def init_args():
     """
@@ -152,10 +153,10 @@ def test_lanenet(image_path, weights_path, with_lane_fit=True):
         plt.imshow(binary_seg_image[0] * 255, cmap='gray')
         plt.show()
 
+
     sess.close()
 
     return
-
 
 if __name__ == '__main__':
     """
